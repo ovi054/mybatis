@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.repository.EmployeeRepository">
+    <resultMap id="result" type="com.mybatis.entity.Employee">
+        <id property="id" column="id"/>
+        <result property="firstName" column="firstName"/>
+        <result property="lastName" column="lastName"/>
+        <result property="email" column="email"/>
+    </resultMap>
+    <select id="findAll" resultMap="result" >
+        select id,firstName,lastName,email from employees
+    </select>
+    <select id="findbyID" resultMap="result" >
+        SELECT * FROM employees WHERE id = #{id}
+    </select>
+    <insert id="save">
+        INSERT INTO employees(id, firstName, lastName,email)
+         VALUES (#{id}, #{firstName}, #{lastName}, #{email})
+    </insert>
+</mapper>
